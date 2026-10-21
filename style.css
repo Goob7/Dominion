@@ -1,0 +1,801 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #15191f;
+    color: white;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =================================
+   NATION SELECTION
+================================= */
+
+#nation-screen {
+    min-height: 100vh;
+    padding: 50px 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #15191f,
+            #263747
+        );
+
+    text-align: center;
+}
+
+.title-area h1 {
+    font-size: 42px;
+    margin-bottom: 8px;
+}
+
+.title-area p {
+    color: #b9c2ca;
+    font-size: 18px;
+}
+
+.nation-grid {
+    max-width: 900px;
+    margin: 50px auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.nation-choice {
+    min-height: 140px;
+
+    border: 2px solid #394652;
+    border-radius: 14px;
+
+    background: #222a32;
+    color: white;
+
+    padding: 25px;
+
+    transition:
+        transform 0.15s,
+        border-color 0.15s,
+        background 0.15s;
+}
+
+.nation-choice:hover {
+    transform: translateY(-5px);
+    border-color: white;
+    background: #303b46;
+}
+
+.nation-choice strong {
+    display: block;
+
+    font-size: 22px;
+
+    margin-bottom: 10px;
+}
+
+.nation-choice span {
+    color: #aeb8c1;
+}
+
+
+/* =================================
+   HEADER
+================================= */
+
+header {
+    height: 90px;
+
+    padding: 12px 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #202830;
+
+    border-bottom: 2px solid #3b4650;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 22px;
+}
+
+#player-country-name {
+    color: #aebdca;
+    margin-top: 5px;
+}
+
+.top-stats {
+    display: flex;
+    gap: 20px;
+}
+
+.top-stats div {
+    min-width: 100px;
+
+    padding: 8px 12px;
+
+    background: #29333d;
+
+    border-radius: 8px;
+
+    text-align: center;
+
+    font-size: 13px;
+}
+
+.top-stats strong {
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 17px;
+}
+
+
+/* =================================
+   MAIN
+================================= */
+
+main {
+    display: grid;
+
+    grid-template-columns:
+        minmax(600px, 1fr)
+        350px;
+
+    min-height: calc(100vh - 140px);
+}
+
+
+/* =================================
+   MAP
+================================= */
+
+.map-container {
+    padding: 15px;
+
+    background: #4fa0cf;
+}
+
+.map-title {
+    text-align: center;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    margin-bottom: 10px;
+
+    text-shadow:
+        1px 1px 2px black;
+}
+
+#map {
+    position: relative;
+
+    width: 100%;
+    height: 600px;
+
+    overflow: hidden;
+
+    border: 2px solid #1b2730;
+
+    background: #4fa0cf;
+}
+
+
+/* =================================
+   TERRITORIES
+================================= */
+
+.territory {
+    position: absolute;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    font-weight: bold;
+
+    color: white;
+
+    text-shadow:
+        1px 1px 3px black;
+
+    border: 2px solid #172027;
+
+    cursor: pointer;
+
+    transition:
+        filter 0.15s,
+        transform 0.15s;
+
+    user-select: none;
+}
+
+.territory:hover {
+    filter: brightness(1.15);
+
+    transform: scale(1.015);
+
+    z-index: 10;
+}
+
+.territory.selected {
+    outline: 4px solid white;
+
+    z-index: 20;
+}
+
+
+/* =================================
+   MAP POSITIONS
+================================= */
+
+.northland {
+    left: 14%;
+    top: 6%;
+
+    width: 31%;
+    height: 31%;
+
+    border-radius:
+        45% 25% 20% 35%;
+}
+
+.eastland {
+    left: 56%;
+    top: 19%;
+
+    width: 28%;
+    height: 29%;
+
+    border-radius:
+        20% 45% 35% 25%;
+}
+
+.southland {
+    left: 43%;
+    top: 44%;
+
+    width: 42%;
+    height: 35%;
+
+    border-radius:
+        10% 25% 40% 20%;
+}
+
+.westland {
+    left: 8%;
+    top: 40%;
+
+    width: 35%;
+    height: 38%;
+
+    border-radius:
+        35% 20% 20% 30%;
+}
+
+.centralia {
+    left: 36%;
+    top: 27%;
+
+    width: 26%;
+    height: 30%;
+
+    border-radius:
+        40% 30% 25% 35%;
+}
+
+.highlands {
+    left: 19%;
+    top: 73%;
+
+    width: 30%;
+    height: 24%;
+
+    border-radius:
+        35% 20% 40% 25%;
+}
+
+
+/* =================================
+   COUNTRY COLORS
+================================= */
+
+.northland {
+    background: #4d963f;
+}
+
+.eastland {
+    background: #c09a27;
+}
+
+.southland {
+    background: #ad6048;
+}
+
+.westland {
+    background: #7657a8;
+}
+
+.centralia {
+    background: #c05b7b;
+}
+
+.highlands {
+    background: #5d707a;
+}
+
+
+/* =================================
+   SIDE PANEL
+================================= */
+
+.side-panel {
+    padding: 18px;
+
+    background: #202830;
+
+    border-left: 2px solid #3b4650;
+
+    overflow-y: auto;
+}
+
+#no-selection {
+    text-align: center;
+
+    margin-top: 100px;
+
+    color: #aeb8c1;
+}
+
+#no-selection h2 {
+    color: white;
+}
+
+
+/* =================================
+   COUNTRY INFO
+================================= */
+
+#country-info h2 {
+    margin-top: 0;
+
+    font-size: 28px;
+}
+
+.country-city {
+    color: #aeb8c1;
+
+    margin-bottom: 20px;
+}
+
+.info-grid {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 8px;
+}
+
+.info-grid div {
+    background: #29333d;
+
+    padding: 10px;
+
+    border-radius: 7px;
+
+    font-size: 13px;
+}
+
+.info-grid strong {
+    display: block;
+
+    margin-top: 5px;
+
+    font-size: 16px;
+}
+
+
+/* =================================
+   PANELS
+================================= */
+
+.panel-section {
+    margin-top: 22px;
+
+    padding-top: 15px;
+
+    border-top:
+        1px solid #3b4650;
+}
+
+.panel-section h3 {
+    margin-top: 0;
+}
+
+.panel-section p {
+    color: #bac4cc;
+}
+
+.panel-section p strong {
+    color: white;
+}
+
+
+/* =================================
+   BUTTONS
+================================= */
+
+.button-grid {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 8px;
+}
+
+.button-grid button,
+.time-controls button {
+    padding: 10px;
+
+    border: 1px solid #4b5965;
+
+    border-radius: 7px;
+
+    background: #303b46;
+
+    color: white;
+}
+
+.button-grid button:hover,
+.time-controls button:hover {
+    background: #3e4b58;
+}
+
+button:disabled {
+    opacity: 0.4;
+
+    cursor: not-allowed;
+}
+
+
+/* =================================
+   ATTACK
+================================= */
+
+.attack-button {
+    width: 100%;
+
+    padding: 14px;
+
+    margin-top: 10px;
+
+    border: 2px solid #8d3434;
+
+    border-radius: 8px;
+
+    background: #702d2d;
+
+    color: white;
+
+    font-weight: bold;
+
+    font-size: 17px;
+}
+
+.attack-button:not(:disabled):hover {
+    background: #963939;
+}
+
+
+/* =================================
+   TIME CONTROLS
+================================= */
+
+.time-controls {
+    height: 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 7px 15px;
+
+    background: #1b2229;
+
+    border-top:
+        2px solid #3b4650;
+}
+
+.time-controls button {
+    padding: 7px 13px;
+}
+
+#game-status {
+    margin-left: auto;
+
+    color: #aeb8c1;
+}
+
+.restart-button {
+    border-color: #805d32 !important;
+}
+
+
+/* =================================
+   WAR REPORT
+================================= */
+
+.war-notification {
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    background:
+        rgba(0, 0, 0, 0.65);
+
+    z-index: 1000;
+}
+
+.war-box {
+    width: 430px;
+
+    padding: 25px;
+
+    background: #202830;
+
+    border:
+        2px solid #66737e;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 10px 40px
+        rgba(0, 0, 0, 0.5);
+}
+
+.war-box h2 {
+    margin-top: 0;
+
+    text-align: center;
+}
+
+#war-report {
+    white-space: pre-wrap;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    line-height: 1.6;
+
+    color: #d9e0e5;
+}
+
+#close-war-report {
+    width: 100%;
+
+    padding: 11px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #394852;
+
+    color: white;
+
+    font-size: 15px;
+}
+
+#close-war-report:hover {
+    background: #4a5b67;
+}
+
+
+/* =================================
+   VICTORY SCREEN
+================================= */
+
+.victory-screen {
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    background:
+        rgba(0, 0, 0, 0.82);
+
+    z-index: 2000;
+}
+
+.victory-box {
+    width: 500px;
+
+    padding: 45px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #26343e,
+            #182027
+        );
+
+    border:
+        3px solid #d6b84a;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 0 60px
+        rgba(0, 0, 0, 0.7);
+
+    animation:
+        victoryAppear 0.5s ease-out;
+}
+
+.victory-crown {
+    font-size: 70px;
+
+    margin-bottom: 5px;
+}
+
+.victory-box h1 {
+    font-size: 55px;
+
+    margin: 5px 0;
+
+    letter-spacing: 4px;
+}
+
+.victory-box h2 {
+    font-size: 25px;
+
+    margin-top: 5px;
+}
+
+.victory-box p {
+    color: #c5cdd3;
+
+    font-size: 17px;
+
+    line-height: 1.5;
+}
+
+.victory-stats {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 30px;
+
+    margin: 25px 0;
+}
+
+.victory-stats div {
+    min-width: 120px;
+
+    padding: 14px;
+
+    background: #29343d;
+
+    border-radius: 10px;
+}
+
+.victory-stats strong {
+    display: block;
+
+    font-size: 25px;
+
+    margin: 5px;
+}
+
+#victory-restart {
+    padding: 14px 30px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #d6b84a;
+
+    color: #172027;
+
+    font-size: 17px;
+
+    font-weight: bold;
+}
+
+#victory-restart:hover {
+    filter: brightness(1.1);
+}
+
+@keyframes victoryAppear {
+
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+}
+
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+@media (max-width: 900px) {
+
+    main {
+        grid-template-columns: 1fr;
+    }
+
+    .side-panel {
+        border-left: none;
+
+        border-top:
+            2px solid #3b4650;
+    }
+
+    .nation-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .nation-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .top-stats {
+        gap: 5px;
+    }
+
+    .top-stats div {
+        min-width: 70px;
+    }
+
+}
