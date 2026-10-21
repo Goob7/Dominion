@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grand Strategy</title>
+</head>
+
+<body>
+
+<!-- ================================
+     NATION SELECTION
+================================ -->
+
+<div id="nation-screen">
+
+    <div class="title-area">
+        <h1>🌍 GRAND STRATEGY</h1>
+        <p>Choose the nation you will lead.</p>
+    </div>
+
+    <div class="nation-grid">
+
+        <button class="nation-choice" data-country="Northland">
+            <strong>🟩 Northland</strong>
+            <span>Expansionist Monarchy</span>
+        </button>
+
+        <button class="nation-choice" data-country="Eastland">
+            <strong>🟨 Eastland</strong>
+            <span>Wealthy Republic</span>
+        </button>
+
+        <button class="nation-choice" data-country="Southland">
+            <strong>🟫 Southland</strong>
+            <span>Defensive Kingdom</span>
+        </button>
+
+        <button class="nation-choice" data-country="Westland">
+            <strong>🟪 Westland</strong>
+            <span>Peaceful Republic</span>
+        </button>
+
+        <button class="nation-choice" data-country="Centralia">
+            <strong>🟥 Centralia</strong>
+            <span>Aggressive Empire</span>
+        </button>
+
+        <button class="nation-choice" data-country="Highlands">
+            <strong>⬜ Highlands</strong>
+            <span>Isolated Tribal State</span>
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================================
+     GAME
+================================ -->
+
+<div id="game-screen" class="hidden">
+
+    <header>
+
+        <div>
+            <h1>🌍 GRAND STRATEGY</h1>
+
+            <div id="player-country-name">
+                Your Nation
+            </div>
+        </div>
+
+        <div class="top-stats">
+
+            <div>
+                💰 Gold
+                <strong id="money">0</strong>
+            </div>
+
+            <div>
+                👥 Population
+                <strong id="population">0</strong>
+            </div>
+
+            <div>
+                🪖 Military
+                <strong id="military">0</strong>
+            </div>
+
+            <div>
+                🔬 Technology
+                <strong id="technology">0</strong>
+            </div>
+
+            <div>
+                📅 Year
+                <strong id="year">1427</strong>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <!-- ================================
+             MAP
+        ================================= -->
+
+        <section class="map-container">
+
+            <div class="map-title">
+                WORLD MAP
+            </div>
+
+            <div id="map">
+
+                <div
+                    class="territory northland"
+                    data-country="Northland"
+                    data-city="North City">
+                    Northland
+                </div>
+
+                <div
+                    class="territory eastland"
+                    data-country="Eastland"
+                    data-city="East City">
+                    Eastland
+                </div>
+
+                <div
+                    class="territory southland"
+                    data-country="Southland"
+                    data-city="South City">
+                    Southland
+                </div>
+
+                <div
+                    class="territory westland"
+                    data-country="Westland"
+                    data-city="West City">
+                    Westland
+                </div>
+
+                <div
+                    class="territory centralia"
+                    data-country="Centralia"
+                    data-city="Central City">
+                    Centralia
+                </div>
+
+                <div
+                    class="territory highlands"
+                    data-country="Highlands"
+                    data-city="Highland City">
+                    Highlands
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================
+             SIDE PANEL
+        ================================= -->
+
+        <aside class="side-panel">
+
+            <div id="no-selection">
+
+                <h2>🌍 World Map</h2>
+
+                <p>
+                    Click on a country to view its information.
+                </p>
+
+            </div>
+
+
+            <div id="country-info" class="hidden">
+
+                <h2 id="selected-country">
+                    Country
+                </h2>
+
+                <div class="country-city">
+                    🏙️ <span id="selected-city"></span>
+                </div>
+
+
+                <div class="info-grid">
+
+                    <div>
+                        👥 Population
+                        <strong id="selected-population">
+                            0
+                        </strong>
+                    </div>
+
+                    <div>
+                        💰 Economy
+                        <strong id="selected-economy">
+                            0
+                        </strong>
+                    </div>
+
+                    <div>
+                        🪖 Military
+                        <strong id="selected-military">
+                            0
+                        </strong>
+                    </div>
+
+                    <div>
+                        🔬 Technology
+                        <strong id="selected-technology">
+                            0
+                        </strong>
+                    </div>
+
+                    <div>
+                        🏛️ Government
+                        <strong id="selected-government">
+                            -
+                        </strong>
+                    </div>
+
+                    <div>
+                        🧠 Personality
+                        <strong id="selected-personality">
+                            -
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <!-- DIPLOMACY -->
+
+                <div class="panel-section">
+
+                    <h3>🤝 Diplomacy</h3>
+
+                    <p>
+                        Relations:
+                        <strong id="selected-relations">
+                            -
+                        </strong>
+                    </p>
+
+                    <p>
+                        Status:
+                        <strong id="selected-diplomatic-status">
+                            -
+                        </strong>
+                    </p>
+
+                    <div class="button-grid">
+
+                        <button id="relations-button">
+                            🤝 Improve Relations
+                        </button>
+
+                        <button id="trade-button">
+                            💰 Trade
+                        </button>
+
+                        <button id="nap-button">
+                            🛡️ Non-Aggression Pact
+                        </button>
+
+                        <button id="war-button">
+                            ⚔️ Declare War
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MILITARY -->
+
+                <div class="panel-section">
+
+                    <h3>⚔️ Military</h3>
+
+                    <p>
+                        Army Strength:
+                        <strong id="army-display">
+                            0
+                        </strong>
+                    </p>
+
+                    <p>
+                        Territories:
+                        <strong id="territory-display">
+                            0
+                        </strong>
+                    </p>
+
+                    <button
+                        id="attack-button"
+                        class="attack-button"
+                        disabled>
+                        ⚔️ ATTACK
+                    </button>
+
+                </div>
+
+
+                <!-- DOMESTIC -->
+
+                <div class="panel-section">
+
+                    <h3>🏛️ Domestic</h3>
+
+                    <div class="button-grid">
+
+                        <button id="build-button">
+                            🏗️ Build
+                        </button>
+
+                        <button id="recruit-button">
+                            🪖 Recruit
+                        </button>
+
+                        <button id="research-button">
+                            🔬 Research
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+    </main>
+
+
+    <!-- ================================
+         TIME
+    ================================= -->
+
+    <div class="time-controls">
+
+        <button id="play-button">
+            ▶️ Play
+        </button>
+
+        <button id="pause-button">
+            ⏸️ Pause
+        </button>
+
+        <button id="speed1-button">
+            1×
+        </button>
+
+        <button id="speed2-button">
+            2×
+        </button>
+
+        <button id="speed5-button">
+            5×
+        </button>
+
+        <span id="game-status">
+            ⏸️ Game Paused
+        </span>
+
+        <button
+            id="restart-button"
+            class="restart-button">
+            🔄 Restart
+        </button>
+
+    </div>
+
+
+    <!-- ================================
+         WAR REPORT
+    ================================= -->
+
+    <div
+        id="war-notification"
+        class="war-notification hidden">
+
+        <div class="war-box">
+
+            <h2>⚔️ BATTLE REPORT</h2>
+
+            <pre id="war-report"></pre>
+
+            <button id="close-war-report">
+                Continue
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================
+         VICTORY
+    ================================= -->
+
+    <div
+        id="victory-screen"
+        class="victory-screen hidden">
+
+        <div class="victory-box">
+
+            <div class="victory-crown">
+                👑
+            </div>
+
+            <h1>HOORAY!</h1>
+
+            <h2>TOTAL VICTORY</h2>
+
+            <p id="victory-message">
+                You have conquered the entire world!
+            </p>
+
+            <div class="victory-stats">
+
+                <div>
+                    🗺️
+                    <strong id="victory-territories">
+                        0
+                    </strong>
+                    Territories
+                </div>
+
+                <div>
+                    📅
+                    <strong id="victory-year">
+                        0
+                    </strong>
+                    Year
+                </div>
+
+            </div>
+
+            <button
+                id="victory-restart">
+                🔄 Play Again
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
